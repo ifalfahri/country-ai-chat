@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { CountryList } from '../components/CountryList';
+import { CountryDetailsModal } from '../components/CountryDetailsModal';
 
 const Container = styled.div`
   display: grid;
@@ -20,6 +21,13 @@ export const HomePage = () => {
   return (
     <Container>
       <CountryList onSelect={setSelectedCountry} />
+
+      {selectedCountry && (
+        <CountryDetailsModal 
+          country={selectedCountry}
+          onClose={() => setSelectedCountry(null)}
+        />
+      )}
     </Container>
   );
 };

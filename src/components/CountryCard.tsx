@@ -24,14 +24,18 @@ const Details = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
+const Label = styled.span`
+  font-weight: 500;
+`
+
 export const CountryCard = ({ country, onClick }: any) => (
-  <Card onClick={onClick}>
+  <Card onClick={() => onClick(country)}>
     <Details>
       <Flag>{country.emoji}</Flag>
       <div>
         <h3>{country.name}</h3>
-        <p>Capital: {country.capital || 'N/A'}</p>
-        <p>Currency: {country.currency || 'N/A'}</p>
+        <p><Label>Capital: </Label>{country.capital || 'N/A'}</p>
+        <p><Label>Currency: </Label>{country.currency || 'N/A'}</p>
       </div>
     </Details>
   </Card>
