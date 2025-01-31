@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { CountryList } from '../components/country-list';
+import { CountryList } from '../components/CountryList';
 
 const Container = styled.div`
   display: grid;

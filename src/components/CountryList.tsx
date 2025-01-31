@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_COUNTRIES } from '../graphql/queries';
-import { CountryCard } from './country-card';
+import { CountryCard } from './CountryCard';
 
 const Grid = styled.div`
   display: grid;
