@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Country } from '../types';
+import { CountryDetailsModalProps } from '../types';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -54,10 +54,7 @@ const Label = styled.span`
   font-weight: 500;
 `
 
-export const CountryDetailsModal = ({ country, onClose }: { 
-  country: Country;
-  onClose: () => void;
-}) => (
+export const CountryDetailsModal = ({ country, onClose }: CountryDetailsModalProps) => (
   <ModalOverlay onClick={onClose}>
     <ModalContent onClick={(e) => e.stopPropagation()}>
       <CloseButton onClick={onClose}>&times;</CloseButton>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_COUNTRIES } from '../graphql/queries';
 import { CountryCard } from './CountryCard';
-import { Country } from '../types';
+import { Country, CountryListProps } from '../types';
 
 const Grid = styled.div`
   display: grid;
@@ -11,7 +11,7 @@ const Grid = styled.div`
   padding: ${({ theme }) => theme.spacing.md};
 `;
 
-export const CountryList = ({ onSelect }: any) => {
+export const CountryList = ({ onSelect }: CountryListProps) => {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
   if (loading) return <div>Loading...</div>;

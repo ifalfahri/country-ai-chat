@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { CountryList } from '../components/CountryList';
 import { CountryDetailsModal } from '../components/CountryDetailsModal';
+import { Country } from '../types';
 
 const Container = styled.div`
   display: grid;
@@ -16,11 +17,11 @@ const Container = styled.div`
 `;
 
 export const HomePage = () => {
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
   return (
     <Container>
-      <CountryList onSelect={setSelectedCountry} />
+      <CountryList onSelect={(country: Country) => setSelectedCountry(country)} />
 
       {selectedCountry && (
         <CountryDetailsModal 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CountryCardProps } from '../types';
 
 const Card = styled.article`
   background: white;
@@ -28,7 +29,7 @@ const Label = styled.span`
   font-weight: 500;
 `
 
-export const CountryCard = ({ country, onClick }: any) => (
+export const CountryCard = ({ country, onClick }: CountryCardProps) => (
   <Card onClick={() => onClick(country)}>
     <Details>
       <Flag>{country.emoji}</Flag>

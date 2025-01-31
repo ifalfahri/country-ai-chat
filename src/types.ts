@@ -14,3 +14,17 @@ export interface Country {
     name: string;
   }[];
 }
+
+export interface CountryListProps {
+    onSelect: (country: Country) => void;
+  }
+  
+export interface CountryCardProps {
+    country: Country;
+    onClick: (country: Country) => void;
+  }
+  
+export interface CountryDetailsModalProps {
+    country: Country;
+    onClose: () => void;
+  }
