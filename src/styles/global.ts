@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', serif;
+    font-family: 'Twemoji Country Flags', 'Poppins', serif;
   }
 
   body {
