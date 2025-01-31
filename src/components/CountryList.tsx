@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_COUNTRIES } from '../graphql/queries';
 import { CountryCard } from './CountryCard';
+import { Country } from '../types';
 
 const Grid = styled.div`
   display: grid;
@@ -18,7 +19,7 @@ export const CountryList = ({ onSelect }: any) => {
 
   return (
     <Grid>
-      {data.countries.map((country: any) => (
+      {data.countries.map((country: Country) => (
         <CountryCard 
           key={country.code} 
           country={country}

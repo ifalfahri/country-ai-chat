@@ -9,9 +9,11 @@ export const GET_COUNTRIES = gql`
       capital
       currency
       languages {
+        code
         name
       }
       continent {
+        code
         name
       }
     }
