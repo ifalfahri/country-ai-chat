@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CountryDetailsModalProps } from '../types';
+import {FiX} from 'react-icons/fi';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -27,12 +28,16 @@ const ModalContent = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 1rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   background: none;
   border: none;
-  font-size: 2rem;
   cursor: pointer;
+  color: ${({ theme }) => theme.colors.text};
+
+    &:hover {
+        color: ${({ theme }) => theme.colors.muted};
+    }
 `;
 
 const DetailSection = styled.div`
@@ -57,7 +62,7 @@ const Label = styled.span`
 export const CountryDetailsModal = ({ country, onClose }: CountryDetailsModalProps) => (
   <ModalOverlay onClick={onClose}>
     <ModalContent onClick={(e) => e.stopPropagation()}>
-      <CloseButton onClick={onClose}>&times;</CloseButton>
+      <CloseButton onClick={onClose}><FiX size={24} /></CloseButton>
         <Flag>{country.emoji}</Flag>
       <Name>{country.name}</Name>
       

@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     secondary: '#4f46e5',
     background: '#f8fafc',
     text: '#1e293b',
+    muted: '#4e5a6e',
     error: '#dc2626',
     success: '#16a34a',
   },
