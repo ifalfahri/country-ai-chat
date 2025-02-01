@@ -9,6 +9,14 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => theme.spacing.md};
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export const CountryList = ({ onSelect }: CountryListProps) => {

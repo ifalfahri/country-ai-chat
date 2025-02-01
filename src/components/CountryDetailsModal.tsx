@@ -69,7 +69,7 @@ export const CountryDetailsModal = ({ country, onClose }: CountryDetailsModalPro
       <DetailSection>
         <h3>Basic Info</h3>
         <p><Label>Capital: </Label>{country.capital || 'N/A'}</p>
-        <p><Label>Currency: </Label>{country.currency || 'N/A'}</p>
+        <p><Label>Currency: </Label>{country.currencies?.join(', ') || 'N/A'}</p>
         <p><Label>Continent: </Label>{country.continent?.name}</p>
       </DetailSection>
 

@@ -7,7 +7,7 @@ export const GET_COUNTRIES = gql`
       name
       emoji
       capital
-      currency
+      currencies
       phone
       languages {
         code
