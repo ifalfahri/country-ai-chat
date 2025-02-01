@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CountryList } from '../components/CountryList';
 import { CountryDetailsModal } from '../components/CountryDetailsModal';
 import { Country } from '../types';
+import { ChatInterface } from '../components/ChatInterface';
 
 const Container = styled.div`
   display: grid;
@@ -22,7 +23,7 @@ export const HomePage = () => {
   return (
     <Container>
       <CountryList onSelect={(country: Country) => setSelectedCountry(country)} />
-
+      <ChatInterface />
       {selectedCountry && (
         <CountryDetailsModal 
           country={selectedCountry}
