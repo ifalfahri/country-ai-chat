@@ -79,7 +79,7 @@ export const CountryCard = ({ country, onClick }: CountryCardProps) =>
       <InfoContainer>
         <CountryName>{country.name}</CountryName>
         <p><Label>Capital: </Label>{country.capital || 'N/A'}</p>
-        <p><Label>Currency: </Label>{formatCurrencies(country.currencies)}</p>
+        <p><Label>Currency: </Label>{formatCurrencies(country.currencies) || 'N/A'}</p>
       </InfoContainer>
     </Details>
   </Card>
