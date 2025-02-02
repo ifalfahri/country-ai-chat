@@ -9,11 +9,14 @@ export const theme: DefaultTheme = {
     muted: '#4e5a6e',
     error: '#dc2626',
     success: '#16a34a',
+    textSecondary: '#666',
   },
   spacing: {
     sm: '0.5rem',
     md: '1rem',
     lg: '2rem',
+    xl: '3rem',
+    xxl: '4rem'
   },
   borderRadius: '8px',
   shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
