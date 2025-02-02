@@ -72,6 +72,15 @@ const Messages = styled.div`
   flex-direction: column;
   gap: 0.8rem;
   min-height: 0;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 
 const MessageBubble = styled.div<{ $isUser: boolean }>`
