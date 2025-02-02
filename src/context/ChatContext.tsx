@@ -13,6 +13,7 @@ type ChatContextType = {
   isTyping: boolean;
   error: string | null;
   sendMessage: (message: string) => Promise<void>;
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
 };
 
 const ChatContext = createContext<ChatContextType>({} as ChatContextType);
@@ -25,7 +26,6 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const sendMessage = async (content: string) => {
     if (!content.trim()) return;
 
-    // Add user message
     setMessages(prev => [...prev, {
       content: content.trim(),
       isUser: true,
@@ -36,36 +36,35 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       setIsTyping(true);
       setError(null);
 
-      // Add temporary AI typing indicator
+      // Add empty AI message that will be updated with streamed content
       setMessages(prev => [...prev, {
-        content: '...',
+        content: '',
         isUser: false,
-        timestamp: new Date(),
-        isLoading: true
+        timestamp: new Date()
       }]);
 
-      const response = await generateAIResponse(content);
-      
-      // Replace typing indicator with actual response
-      setMessages(prev => 
-        prev.filter(msg => !msg.isLoading).concat({
-          content: response || "I couldn't generate a response.",
-          isUser: false,
-          timestamp: new Date()
-        })
-      );
+      let fullResponse = '';
+      await generateAIResponse(content, (chunk) => {
+        fullResponse += chunk;
+        // Update the last message with accumulated chunks
+        setMessages(prev => {
+          const newMessages = [...prev];
+          newMessages[newMessages.length - 1].content = fullResponse;
+          return newMessages;
+        });
+      });
+
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : 'Failed to get response. Please try again.';
-        setError(errorMessage);
-        setMessages(prev => prev.filter(msg => !msg.isLoading));
-      } finally {
-        setIsTyping(false);
-      }
+      const errorMessage = error instanceof Error ? error.message : 'Failed to get response. Please try again.';
+      setError(errorMessage);
+      setMessages(prev => prev.slice(0, -1)); // Remove the last empty AI message
+    } finally {
+      setIsTyping(false);
+    }
   };
 
-
   return (
-    <ChatContext.Provider value={{ messages, isTyping, error, sendMessage }}>
+    <ChatContext.Provider value={{ messages, isTyping, error, sendMessage, setMessages }}>
       {children}
     </ChatContext.Provider>
   );

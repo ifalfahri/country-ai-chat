@@ -199,8 +199,10 @@ export const ChatInterface = () => {
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!input.trim() || isTyping) return;
-    await sendMessage(input);
+    
+    const userMessage = input.trim();
     setInput("");
+    await sendMessage(userMessage);
   };
 
   return (

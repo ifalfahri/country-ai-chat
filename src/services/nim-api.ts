@@ -1,4 +1,4 @@
-export const generateAIResponse = async (prompt: string) => {
+export const generateAIResponse = async (prompt: string, onChunk: (chunk: string) => void) => {
   try {
     const response = await fetch("/api/v1/chat/completions", {
       method: "POST",
@@ -21,12 +21,38 @@ export const generateAIResponse = async (prompt: string) => {
           },
           { role: "user", content: prompt },
         ],
-        temperature: 0.2,
+        temperature: 0.6,
+        stream: true,
       }),
     });
 
-    const data = await response.json();
-    return data.choices[0]?.message?.content;
+    const reader = response.body?.getReader();
+    if (!reader) throw new Error("No reader available");
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const chunk = new TextDecoder().decode(value);
+      const lines = chunk.split('\n').filter(line => line.trim() !== '');
+      
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          // Handle [DONE] message
+          if (data.trim() === '[DONE]') continue;
+          
+          try {
+            const json = JSON.parse(data);
+            if (json.choices[0]?.delta?.content) {
+              onChunk(json.choices[0].delta.content);
+            }
+          } catch (e) {
+            console.warn('Failed to parse chunk:', e, data);
+          }
+        }
+      }
+    }
   } catch (error) {
     console.error("Error calling NIM API:", error);
     throw error;
