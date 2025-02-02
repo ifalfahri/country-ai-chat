@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FiMessageSquare, FiSend, FiX } from "react-icons/fi";
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 import { useChat } from "../hooks/chatHooks";
 import { theme } from "../styles/theme";
 import { LoadingDots } from "./LoadingDots";
@@ -175,6 +176,36 @@ const CloseButton = styled.button`
   }
 `;
 
+const MarkdownContent = styled.div`
+  h1, h2, h3 {
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+  
+  p {
+    margin: 0.5rem 0;
+  }
+  
+  ul, ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  code {
+    background: #e2e8f0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  blockquote {
+    border-left: 3px solid ${({ theme }) => theme.colors.primary};
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    color: ${({ theme }) => theme.colors.muted};
+  }
+`;
+
 export const ChatInterface = () => {
   const { messages, isTyping, error, sendMessage } = useChat();
   const [isOpen, setIsOpen] = useState(false);
@@ -216,10 +247,20 @@ export const ChatInterface = () => {
           </CloseButton>
         </ChatHeader>
         <ChatContainer>
-          <Messages>
+        <Messages>
             {messages.map((message, i) => (
               <MessageBubble key={i} $isUser={message.isUser}>
-                {message.content || <LoadingDots />}
+                {message.isUser ? (
+                  message.content
+                ) : (
+                  <MarkdownContent>
+                    {message.content ? (
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                    ) : (
+                      <LoadingDots />
+                    )}
+                  </MarkdownContent>
+                )}
               </MessageBubble>
             ))}
             <div ref={messagesEndRef} />
