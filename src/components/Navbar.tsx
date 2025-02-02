@@ -80,8 +80,8 @@ const DropdownButton = styled.button`
 `;
 
 const Logout = styled.p`
-    color: ${({ theme }) => theme.colors.error};
-    `;
+  color: ${({ theme }) => theme.colors.error};
+`;
 
 const SearchContainer = styled.div`
   margin: 0 auto;
@@ -96,7 +96,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchInput = styled.input`
-background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.background};
   width: 100%;
   padding: ${({ theme }) => theme.spacing.sm};
   border: none;
@@ -109,7 +109,6 @@ background: ${({ theme }) => theme.colors.background};
   @media (max-width: 768px) {
     text-align: center;
   }
-
 `;
 
 const Wrapper = styled.div`
@@ -122,7 +121,7 @@ const Wrapper = styled.div`
       flex: 1;
       justify-content: flex-end;
     }
-}
+  }
 `;
 
 export const Navbar = ({ onSearch }: NavbarProps) => {
@@ -149,7 +148,9 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
           </UserButton>
           <Dropdown $isOpen={isOpen}>
             <DropdownButton>{user?.name}</DropdownButton>
-            <DropdownButton onClick={logout}><Logout>Log out</Logout></DropdownButton>
+            <DropdownButton onClick={logout}>
+              <Logout>Log out</Logout>
+            </DropdownButton>
           </Dropdown>
         </UserSection>
       </Wrapper>

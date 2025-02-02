@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { CountryCardProps } from '../types';
+import styled from "styled-components";
+import { CountryCardProps } from "../types";
 
 const Card = styled.article`
   background: white;
@@ -28,8 +28,8 @@ const Flag = styled.span`
 const InfoContainer = styled.div`
   word-wrap: break-word;
   p {
-    font-size: 0.9rem;  
-  overflow: hidden;
+    font-size: 0.9rem;
+    overflow: hidden;
   }
 
   @media (max-width: 768px) {
@@ -62,26 +62,31 @@ const Details = styled.div`
 
 const Label = styled.span`
   font-weight: 500;
-`
+`;
 
-export const CountryCard = ({ country, onClick }: CountryCardProps) => 
-{
+export const CountryCard = ({ country, onClick }: CountryCardProps) => {
   const formatCurrencies = (currencies?: string[]) => {
-    if (!currencies) return 'N/A';
-    if (currencies.length <= 2) return currencies.join(', ');
-    return `${currencies.slice(0, 2).join(', ')}...`;
+    if (!currencies) return "N/A";
+    if (currencies.length <= 2) return currencies.join(", ");
+    return `${currencies.slice(0, 2).join(", ")}...`;
   };
 
   return (
-  <Card onClick={() => onClick(country)}>
-    <Details>
-      <Flag>{country.emoji}</Flag>
-      <InfoContainer>
-        <CountryName>{country.name}</CountryName>
-        <p><Label>Capital: </Label>{country.capital || 'N/A'}</p>
-        <p><Label>Currency: </Label>{formatCurrencies(country.currencies) || 'N/A'}</p>
-      </InfoContainer>
-    </Details>
-  </Card>
-);
+    <Card onClick={() => onClick(country)}>
+      <Details>
+        <Flag>{country.emoji}</Flag>
+        <InfoContainer>
+          <CountryName>{country.name}</CountryName>
+          <p>
+            <Label>Capital: </Label>
+            {country.capital || "N/A"}
+          </p>
+          <p>
+            <Label>Currency: </Label>
+            {formatCurrencies(country.currencies) || "N/A"}
+          </p>
+        </InfoContainer>
+      </Details>
+    </Card>
+  );
 };

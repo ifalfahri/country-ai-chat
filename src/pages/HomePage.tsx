@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { CountryList } from '../components/CountryList';
-import { CountryDetailsModal } from '../components/CountryDetailsModal';
-import { Country } from '../types';
-import { ChatInterface } from '../components/ChatInterface';
-import { Navbar } from '../components/Navbar';
+import { useState } from "react";
+import styled from "styled-components";
+import { ChatInterface } from "../components/ChatInterface";
+import { CountryDetailsModal } from "../components/CountryDetailsModal";
+import { CountryList } from "../components/CountryList";
+import { Navbar } from "../components/Navbar";
+import { Country } from "../types";
 
 const PageWrapper = styled.div`
   display: flex;
@@ -21,24 +21,24 @@ const Container = styled.div`
 
 export const HomePage = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <PageWrapper>
       <Navbar onSearch={setSearchTerm} />
-    <Container>
-    <CountryList 
-        onSelect={(country: Country) => setSelectedCountry(country)}
-        searchTerm={searchTerm}
-      />
-      <ChatInterface />
-      {selectedCountry && (
-        <CountryDetailsModal 
-          country={selectedCountry}
-          onClose={() => setSelectedCountry(null)}
+      <Container>
+        <CountryList
+          onSelect={(country: Country) => setSelectedCountry(country)}
+          searchTerm={searchTerm}
         />
-      )}
-    </Container>
+        <ChatInterface />
+        {selectedCountry && (
+          <CountryDetailsModal
+            country={selectedCountry}
+            onClose={() => setSelectedCountry(null)}
+          />
+        )}
+      </Container>
     </PageWrapper>
   );
 };

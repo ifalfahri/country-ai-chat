@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { CountryDetailsModalProps } from '../types';
-import {FiX} from 'react-icons/fi';
+import { FiX } from "react-icons/fi";
+import styled from "styled-components";
+import { CountryDetailsModalProps } from "../types";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -35,9 +35,9 @@ const CloseButton = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
 
-    &:hover {
-        color: ${({ theme }) => theme.colors.muted};
-    }
+  &:hover {
+    color: ${({ theme }) => theme.colors.muted};
+  }
 `;
 
 const DetailSection = styled.div`
@@ -48,29 +48,43 @@ const DetailSection = styled.div`
 `;
 
 const Flag = styled.h1`
-    font-size: 4rem;
-    text-align: center;
+  font-size: 4rem;
+  text-align: center;
 `;
 
 const Name = styled.h2`
-    text-align: center;
-`
+  text-align: center;
+`;
 const Label = styled.span`
   font-weight: 500;
-`
+`;
 
-export const CountryDetailsModal = ({ country, onClose }: CountryDetailsModalProps) => (
+export const CountryDetailsModal = ({
+  country,
+  onClose,
+}: CountryDetailsModalProps) => (
   <ModalOverlay onClick={onClose}>
     <ModalContent onClick={(e) => e.stopPropagation()}>
-      <CloseButton onClick={onClose}><FiX size={24} /></CloseButton>
-        <Flag>{country.emoji}</Flag>
+      <CloseButton onClick={onClose}>
+        <FiX size={24} />
+      </CloseButton>
+      <Flag>{country.emoji}</Flag>
       <Name>{country.name}</Name>
-      
+
       <DetailSection>
         <h3>Basic Info</h3>
-        <p><Label>Capital: </Label>{country.capital || 'N/A'}</p>
-        <p><Label>Currency: </Label>{country.currencies?.join(', ') || 'N/A'}</p>
-        <p><Label>Continent: </Label>{country.continent?.name}</p>
+        <p>
+          <Label>Capital: </Label>
+          {country.capital || "N/A"}
+        </p>
+        <p>
+          <Label>Currency: </Label>
+          {country.currencies?.join(", ") || "N/A"}
+        </p>
+        <p>
+          <Label>Continent: </Label>
+          {country.continent?.name}
+        </p>
       </DetailSection>
 
       <DetailSection>
@@ -78,14 +92,19 @@ export const CountryDetailsModal = ({ country, onClose }: CountryDetailsModalPro
         <ul>
           {country.languages?.map((lang) => (
             <p key={lang.code}>{lang.name}</p>
-          )) || 'No languages available'}
+          )) || "No languages available"}
         </ul>
       </DetailSection>
 
       <DetailSection>
         <h3>Additional Info</h3>
-        <p><Label>Country Code: </Label>{country.code}</p>
-        <p><Label>Phone Code: </Label>+{country.phone}</p>
+        <p>
+          <Label>Country Code: </Label>
+          {country.code}
+        </p>
+        <p>
+          <Label>Phone Code: </Label>+{country.phone}
+        </p>
       </DetailSection>
     </ModalContent>
   </ModalOverlay>

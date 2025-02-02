@@ -1,5 +1,5 @@
-import { createContext, useState, ReactNode } from 'react';
-import { generateAIResponse } from '../services/nim-api';
+import { createContext, ReactNode, useState } from "react";
+import { generateAIResponse } from "../services/nim-api";
 
 type Message = {
   content: string;
@@ -19,56 +19,69 @@ type ChatContextType = {
 const ChatContext = createContext<ChatContextType>({} as ChatContextType);
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
-  const [messages, setMessages] = useState<Message[]>(() => [{
-    content: "Hi! I'm your AI Country Assistant. Feel free to ask me about any country's culture, travel, or translation.",
-    isUser: false,
-    timestamp: new Date()
-  }]);
+  const [messages, setMessages] = useState<Message[]>(() => [
+    {
+      content:
+        "Hi! I'm your AI Country Assistant. Feel free to ask me about any country's culture, travel, or translation.",
+      isUser: false,
+      timestamp: new Date(),
+    },
+  ]);
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const sendMessage = async (content: string) => {
     if (!content.trim()) return;
 
-    setMessages(prev => [...prev, {
-      content: content.trim(),
-      isUser: true,
-      timestamp: new Date()
-    }]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        content: content.trim(),
+        isUser: true,
+        timestamp: new Date(),
+      },
+    ]);
 
     try {
       setIsTyping(true);
       setError(null);
 
       // Add empty AI message that will be updated with streamed content
-      setMessages(prev => [...prev, {
-        content: '',
-        isUser: false,
-        timestamp: new Date()
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          content: "",
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ]);
 
-      let fullResponse = '';
+      let fullResponse = "";
       await generateAIResponse(content, (chunk) => {
         fullResponse += chunk;
         // Update the last message with accumulated chunks
-        setMessages(prev => {
+        setMessages((prev) => {
           const newMessages = [...prev];
           newMessages[newMessages.length - 1].content = fullResponse;
           return newMessages;
         });
       });
-
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to get response. Please try again.';
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to get response. Please try again.";
       setError(errorMessage);
-      setMessages(prev => prev.slice(0, -1)); // Remove the last empty AI message
+      setMessages((prev) => prev.slice(0, -1)); // Remove the last empty AI message
     } finally {
       setIsTyping(false);
     }
   };
 
   return (
-    <ChatContext.Provider value={{ messages, isTyping, error, sendMessage, setMessages }}>
+    <ChatContext.Provider
+      value={{ messages, isTyping, error, sendMessage, setMessages }}
+    >
       {children}
     </ChatContext.Provider>
   );

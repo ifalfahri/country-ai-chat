@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const dotAnimation = keyframes`
   0%, 80%, 100% { opacity: 0; }
@@ -20,9 +20,15 @@ const Dot = styled.span`
   display: inline-block;
   animation: ${dotAnimation} 1.4s infinite ease-in-out both;
 
-  &:nth-child(1) { animation-delay: -0.32s; }
-  &:nth-child(2) { animation-delay: -0.16s; }
-  &:nth-child(3) { animation-delay: 0s; }
+  &:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+  &:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0s;
+  }
 `;
 
 export const LoadingDots = () => (

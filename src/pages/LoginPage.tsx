@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { GoogleLogin } from '@react-oauth/google';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { FaGlobe } from 'react-icons/fa';
+import { GoogleLogin } from "@react-oauth/google";
+import { useState } from "react";
+import { FaGlobe } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useAuth } from "../context/AuthContext";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const LoginContainer = styled.div`
 
 const LoginCard = styled.div`
   background: white;
-  padding: ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.xxl};
+  padding: ${({ theme }) => theme.spacing.xl};
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -63,7 +63,7 @@ const ErrorMessage = styled.div`
 export const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   return (
     <LoginContainer>
@@ -74,16 +74,17 @@ export const LoginPage = () => {
         <Title>Country AI</Title>
         <Welcome>Welcome!</Welcome>
         <Description>
-          Explore countries around the world with AI-powered insights and analysis.
+          Explore countries around the world with AI-powered insights and
+          analysis.
         </Description>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            setError('');
+            setError("");
             login(credentialResponse);
-            navigate('/');
+            navigate("/");
           }}
           onError={() => {
-            setError('Login failed. Please try again.');
+            setError("Login failed. Please try again.");
           }}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}

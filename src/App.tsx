@@ -1,13 +1,13 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import { ChatProvider } from "./context/ChatContext";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { GlobalStyle } from "./styles/global";
 import { theme } from "./styles/theme";
-import { ChatProvider } from "./context/ChatContext";
-import { AuthProvider } from "./context/AuthContext";
-import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (

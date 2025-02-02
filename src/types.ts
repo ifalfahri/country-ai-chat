@@ -4,7 +4,7 @@ export interface Country {
   emoji: string;
   capital?: string;
   currencies?: [string];
-  phone?: string
+  phone?: string;
   continent: {
     code: string;
     name: string;
@@ -16,16 +16,16 @@ export interface Country {
 }
 
 export interface CountryListProps {
-    onSelect: (country: Country) => void;
-    searchTerm: string;
-  }
-  
+  onSelect: (country: Country) => void;
+  searchTerm: string;
+}
+
 export interface CountryCardProps {
-    country: Country;
-    onClick: (country: Country) => void;
-  }
-  
+  country: Country;
+  onClick: (country: Country) => void;
+}
+
 export interface CountryDetailsModalProps {
-    country: Country;
-    onClose: () => void;
-  }
+  country: Country;
+  onClose: () => void;
+}

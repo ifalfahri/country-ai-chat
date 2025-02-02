@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import { FaSpinner } from 'react-icons/fa';
+import { FaSpinner } from "react-icons/fa";
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
   from {
