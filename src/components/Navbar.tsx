@@ -79,6 +79,10 @@ const DropdownButton = styled.button`
   }
 `;
 
+const Logout = styled.p`
+    color: ${({ theme }) => theme.colors.error};
+    `;
+
 const SearchContainer = styled.div`
   margin: 0 auto;
   width: 300px;
@@ -145,7 +149,7 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
           </UserButton>
           <Dropdown $isOpen={isOpen}>
             <DropdownButton>{user?.name}</DropdownButton>
-            <DropdownButton onClick={logout}>Log out</DropdownButton>
+            <DropdownButton onClick={logout}><Logout>Log out</Logout></DropdownButton>
           </Dropdown>
         </UserSection>
       </Wrapper>
