@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Nav = styled.nav`
   background: white;
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.md} 2rem;
   box-shadow: ${({ theme }) => theme.shadow};
   display: flex;
   justify-content: space-between;

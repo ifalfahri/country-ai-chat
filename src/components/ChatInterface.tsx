@@ -8,19 +8,19 @@ import { LoadingDots } from "./LoadingDots";
 
 const FloatingButton = styled.button`
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1rem;
+  right: 1rem;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.secondary};
   color: white;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: transform 0.2s;
 

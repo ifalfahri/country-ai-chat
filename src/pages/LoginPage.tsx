@@ -10,7 +10,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   line-height: 1;
   background: ${({ theme }) => theme.colors.primary};
 `;

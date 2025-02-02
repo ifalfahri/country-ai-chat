@@ -9,6 +9,7 @@ const Container = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => theme.spacing.md};
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
 export const HomePage = () => {
