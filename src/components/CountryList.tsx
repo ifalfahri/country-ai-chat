@@ -4,6 +4,7 @@ import { GET_COUNTRIES } from '../graphql/queries';
 import { CountryCard } from './CountryCard';
 import { Country, CountryListProps } from '../types';
 import { Loading } from './Loading';
+import { Search } from '../utils/search';
 
 const Grid = styled.div`
   display: grid;
@@ -27,7 +28,7 @@ export const CountryList = ({ onSelect, searchTerm }: CountryListProps) => {
   if (error) return <div>Error: {error.message}</div>;
 
   const filteredCountries = data.countries.filter((country: Country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    Search(country, searchTerm)
   );
 
   return (
