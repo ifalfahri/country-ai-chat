@@ -19,7 +19,11 @@ type ChatContextType = {
 const ChatContext = createContext<ChatContextType>({} as ChatContextType);
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => [{
+    content: "Hi! I'm your AI Country Assistant. Feel free to ask me about any country's culture, travel, or translation.",
+    isUser: false,
+    timestamp: new Date()
+  }]);
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
