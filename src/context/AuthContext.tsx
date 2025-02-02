@@ -1,25 +1,7 @@
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { createContext, ReactNode, useContext, useState } from "react";
-
-interface GoogleJwtPayload {
-  name?: string;
-  email?: string;
-  picture?: string;
-}
-
-interface AuthContextType {
-  isAuthenticated: boolean;
-  user: GoogleUser | null;
-  login: (credentialResponse: CredentialResponse) => void;
-  logout: () => void;
-}
-
-interface GoogleUser {
-  name: string;
-  email: string;
-  picture: string;
-}
+import { AuthContextType, GoogleJwtPayload, GoogleUser } from "../types";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 

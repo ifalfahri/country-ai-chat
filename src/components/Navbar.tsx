@@ -2,10 +2,7 @@ import { useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 import styled from "styled-components";
 import { useAuth } from "../context/AuthContext";
-
-interface NavbarProps {
-  onSearch: (term: string) => void;
-}
+import { NavbarProps } from "../types";
 
 const Nav = styled.nav`
   background: white;

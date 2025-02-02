@@ -1,20 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { generateAIResponse } from "../services/nim-api";
-
-type Message = {
-  content: string;
-  isUser: boolean;
-  timestamp: Date;
-  isLoading?: boolean;
-};
-
-type ChatContextType = {
-  messages: Message[];
-  isTyping: boolean;
-  error: string | null;
-  sendMessage: (message: string) => Promise<void>;
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
-};
+import { ChatContextType, Message } from "../types";
 
 const ChatContext = createContext<ChatContextType>({} as ChatContextType);
 
