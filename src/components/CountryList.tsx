@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_COUNTRIES } from '../graphql/queries';
 import { CountryCard } from './CountryCard';
 import { Country, CountryListProps } from '../types';
+import { Loading } from './Loading';
 
 const Grid = styled.div`
   display: grid;
@@ -22,7 +23,7 @@ const Grid = styled.div`
 export const CountryList = ({ onSelect }: CountryListProps) => {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading/>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
