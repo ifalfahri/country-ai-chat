@@ -20,15 +20,19 @@ const Grid = styled.div`
   }
 `;
 
-export const CountryList = ({ onSelect }: CountryListProps) => {
+export const CountryList = ({ onSelect, searchTerm }: CountryListProps) => {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
   if (loading) return <Loading/>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const filteredCountries = data.countries.filter((country: Country) =>
+    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Grid>
-      {data.countries.map((country: Country) => (
+      {filteredCountries.map((country: Country) => (
         <CountryCard 
           key={country.code} 
           country={country}

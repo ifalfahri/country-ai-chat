@@ -8,7 +8,6 @@ import { theme } from "./styles/theme";
 import { ChatProvider } from "./context/ChatContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <>
-                        <Navbar />
                         <HomePage />
                       </>
                     </ProtectedRoute>

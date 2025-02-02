@@ -17,6 +17,7 @@ export interface Country {
 
 export interface CountryListProps {
     onSelect: (country: Country) => void;
+    searchTerm: string;
   }
   
 export interface CountryCardProps {
