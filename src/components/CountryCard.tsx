@@ -51,12 +51,12 @@ const CountryName = styled.p`
 const Details = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
 
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
     gap: ${({ theme }) => theme.spacing.sm};
+    margin-bottom: ${({ theme }) => theme.spacing.sm};
   }
 `;
 
