@@ -3,6 +3,7 @@ import { FiMessageSquare, FiSend, FiX } from "react-icons/fi";
 import styled from "styled-components";
 import { useChat } from "../hooks/chatHooks";
 import { theme } from "../styles/theme";
+import { LoadingDots } from "./LoadingDots";
 
 const FloatingButton = styled.button`
   position: fixed;
@@ -154,12 +155,6 @@ const Button = styled.button`
   }
 `;
 
-const TypingIndicator = styled.div`
-  color: #64748b;
-  font-style: italic;
-  padding: 0 1.2rem;
-`;
-
 const ChatHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -224,10 +219,9 @@ export const ChatInterface = () => {
           <Messages>
             {messages.map((message, i) => (
               <MessageBubble key={i} $isUser={message.isUser}>
-                {message.content}
+                {message.content || <LoadingDots />}
               </MessageBubble>
             ))}
-            {isTyping && <TypingIndicator>AI is typing...</TypingIndicator>}
             <div ref={messagesEndRef} />
           </Messages>
 
