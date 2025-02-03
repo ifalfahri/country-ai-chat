@@ -1,3 +1,5 @@
+<div align="center">
+
 # Country AI
 ![logo](./public/CountryAI.png)
 [![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](#)
@@ -6,7 +8,9 @@
 [![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](#)
 [![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=fff)](#)
 
->Country information with AI-powered chat capabilities, built with React, TypeScript, and GraphQL.
+Country information with AI-powered chat capabilities, built with React, TypeScript, and GraphQL.
+
+</div>
 
 ## Project Overview
 
