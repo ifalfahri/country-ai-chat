@@ -1,7 +1,11 @@
 export const generateAIResponse = async (
   prompt: string,
-  onChunk: (chunk: string) => void
+  onChunk: (chunk: string) => void,
+  timeoutMs: number = 10000
 ) => {
+  let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+
+  const fetchPromise = async () => {
   try {
     const response = await fetch("/api/v1/chat/completions", {
       method: "POST",
@@ -29,21 +33,22 @@ export const generateAIResponse = async (
       }),
     });
 
-    const reader = response.body?.getReader();
+    reader = response.body?.getReader();
     if (!reader) throw new Error("No reader available");
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    const decoder = new TextDecoder();
 
-      const chunk = new TextDecoder().decode(value);
-      const lines = chunk.split("\n").filter((line) => line.trim() !== "");
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      for (const line of lines) {
-        if (line.startsWith("data: ")) {
-          const data = line.slice(6);
-          // Handle [DONE] message
-          if (data.trim() === "[DONE]") continue;
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n");
+
+        for (const line of lines) {
+          const data = line.replace(/^data: /, "").trim();
+          if (!data) continue;
+          if (data === "[DONE]") continue;
 
           try {
             const json = JSON.parse(data);
@@ -55,9 +60,30 @@ export const generateAIResponse = async (
           }
         }
       }
+    } catch (error) {
+      console.error("Error calling NIM API:", error);
+      throw error;
+    } finally {
+      if (reader) {
+        try {
+          await reader.cancel();
+        } catch (e) {
+          console.error("Error closing reader:", e);
+        }
+      }
     }
+  };
+
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error("Request timed out")), timeoutMs);
+  });
+
+  try {
+    await Promise.race([fetchPromise(), timeoutPromise]);
   } catch (error) {
-    console.error("Error calling NIM API:", error);
+    if (error instanceof Error && error.message === "Request timed out") {
+      throw new Error("I'm sorry, I took too long to respond. Please try asking again.");
+    }
     throw error;
   }
 };
