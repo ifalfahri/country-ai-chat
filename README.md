@@ -12,6 +12,8 @@
 
 Country AI provides users with detailed information about countries while offering an AI assistant to answer questions and provide insights about any country. The application features Google OAuth authentication, responsive design, and real-time AI interactions.
 
+Live Demo : https://couai.vercel.app
+
 ## Screenshots
 ![screenshot-mobile](https://res.cloudinary.com/dyjxcujz4/image/upload/v1738554920/couai_jjeicl.png)
 ![screenshot-desktop](https://res.cloudinary.com/dyjxcujz4/image/upload/v1738554920/couaire_ou3c3p.png)
@@ -46,7 +48,9 @@ Country AI provides users with detailed information about countries while offeri
 - 🚀 Vite
 - 📦 PNPM Package Manager
 
-## Prerequisites
+## Getting Started
+
+### Prerequisites
 
 Before you begin, you'll need:
 
@@ -58,26 +62,28 @@ Before you begin, you'll need:
    - Visit: https://console.cloud.google.com/apis/credentials
    - Set up a new project and create OAuth credentials
 
-## Setup Instructions
+### Installation
 
-1. Clone the repository:
+1. Clone the repository
     ```bash
     git clone https://github.com/ifalfahri/country-ai-chat.git
     cd country-ai-chat
     ```
-2. Install dependencies:
+2. Install dependencies
    ```bash
    pnpm install
    ```
-3. Set up enviroment variables:
+3. Set up enviroment variables
    - Copy `.env.example` to `.env`
    - Add your API keys:
      - `VITE_NVIDIA_API_KEY` - For AI chat functionality
      - `VITE_GOOGLE_CLIENT_ID` - For Google OAuth
-4. Start the development server:
+
+4. Start the development server
    ```bash
    pnpm dev
    ```
+
 ## Project Structure
 ```
 src/ 
@@ -102,6 +108,13 @@ src/
 - Bookmark and Favorites
 - Multi-language support
 - PWA implementation
+
+## Contributing
+Contributions are welcome! If you'd like to contribute, feel free to fork the repository, create a new branch, and submit a pull request.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 
 ## Acknowledgements
 - [Countries GraphQL API](https://countries.trevorblades.com/)
