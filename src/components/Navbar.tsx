@@ -3,6 +3,7 @@ import { FaGlobe } from "react-icons/fa";
 import styled from "styled-components";
 import { useAuth } from "../context/AuthContext";
 import { NavbarProps } from "../types";
+import { Logo } from "../components/Logo";
 
 const Nav = styled.nav`
   background: white;
@@ -14,6 +15,9 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 100;
+`;
+const TitleContainer = styled.div`
+  cursor: pointer;
 `;
 
 const Title = styled.h1`
@@ -124,12 +128,19 @@ const Wrapper = styled.div`
 export const Navbar = ({ onSearch }: NavbarProps) => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
+
+  const toggleLogo = () => {
+    setShowLogo(!showLogo);
+  };
 
   return (
     <Nav>
       <Wrapper>
         <FaGlobe size={24} color="83B2E2" />
-        <Title>Country AI</Title>
+        <TitleContainer onClick={toggleLogo}>
+        {showLogo ? <Logo /> : <Title>Country AI</Title>}
+      </TitleContainer>
       </Wrapper>
       <Wrapper>
         <SearchContainer>
