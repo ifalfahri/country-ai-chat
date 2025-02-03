@@ -1,9 +1,10 @@
 # Country AI
+![logo](./public/CountryAI.png)
 [![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](#)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff)](#)
-[![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=fff)](#)
-[![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](#)
 [![Apollo GraphQL](https://img.shields.io/badge/Apollo%20GraphQL-311C87?&style=for-the-badge&logo=Apollo%20GraphQL&logoColor=white)](#)
+[![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](#)
+[![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=fff)](#)
 
 >Country information with AI-powered chat capabilities, built with React, TypeScript, and GraphQL.
 
@@ -12,7 +13,8 @@
 Country AI provides users with detailed information about countries while offering an AI assistant to answer questions and provide insights about any country. The application features Google OAuth authentication, responsive design, and real-time AI interactions.
 
 ## Screenshots
-
+![screenshot-mobile](https://res.cloudinary.com/dyjxcujz4/image/upload/v1738554920/couai_jjeicl.png)
+![screenshot-desktop](https://res.cloudinary.com/dyjxcujz4/image/upload/v1738554920/couaire_ou3c3p.png)
 
 ## Features
 
